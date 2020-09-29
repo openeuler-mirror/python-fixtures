@@ -1,10 +1,10 @@
 Name:           python-fixtures
 Version:        3.0.0
-Release:        12
+Release:        13
 Summary:        A python contract for writing reusable state / support logic tests
 License:        ASL 2.0 or BSD
 URL:            https://launchpad.net/python-fixtures
-Source0:        http://pypi.python.org/packages/source/f/fixtures/fixtures-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/source/f/fixtures/fixtures-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  python2-devel python2-pbr >= 0.11 python2-mock python2-testtools >= 0.9.22
 
@@ -58,5 +58,8 @@ own fixtures using the fixtures contract.
 %{python3_sitelib}/fixtures-%{version}-py?.?.egg-info
 
 %changelog
+* Tue Sep 29 2020 liuweibo <liuweibo10@huawei.com> - 3.0.0-13
+- Fix Source0
+
 * Mon Nov 25 2019 Ling Yang <lingyang2@huawei.com> - 3.0.0-12
 - Package init
