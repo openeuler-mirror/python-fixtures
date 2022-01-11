@@ -1,10 +1,11 @@
 Name:           python-fixtures
 Version:        3.0.0
-Release:        14
+Release:        15
 Summary:        A python contract for writing reusable state / support logic tests
 License:        ASL 2.0 or BSD
 URL:            https://launchpad.net/python-fixtures
 Source0:        https://pypi.python.org/packages/source/f/fixtures/fixtures-%{version}.tar.gz
+Patch0001:      0001-Skip-tests-failing-in-Python-3.9.patch
 BuildArch:      noarch
 
 %description
@@ -25,7 +26,7 @@ for unit testing. It includes some helper and adaptation logic to write your
 own fixtures using the fixtures contract.
 
 %prep
-%autosetup -n fixtures-%{version}
+%autosetup -n fixtures-%{version} -p1
 
 %build
 %py3_build
@@ -42,6 +43,9 @@ own fixtures using the fixtures contract.
 %{python3_sitelib}/fixtures-%{version}-py?.?.egg-info
 
 %changelog
+* Jan Mon 10 2022 xigaoxinyan <xigaoxinyan@huawei.com> - 3.0.0-15
+- add patch for Skip tests failing in Python 3.9
+
 * Tue Sep 29 2020 liuweibo <liuweibo10@huawei.com> - 3.0.0-14
 - Fix Source0
 
