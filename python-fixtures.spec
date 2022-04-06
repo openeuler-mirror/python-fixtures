@@ -1,10 +1,12 @@
 Name:           python-fixtures
 Version:        3.0.0
-Release:        14
+Release:        15
 Summary:        A python contract for writing reusable state / support logic tests
 License:        ASL 2.0 or BSD
 URL:            https://launchpad.net/python-fixtures
 Source0:        https://pypi.python.org/packages/source/f/fixtures/fixtures-%{version}.tar.gz
+#Refer: https://github.com/testing-cabal/fixtures/commit/fe830674abd4926d96d38f9992f3e31b00cd891a
+Patch0000:      fix-test_monkeypatch-failed.patch
 BuildArch:      noarch
 
 %description
@@ -25,7 +27,7 @@ for unit testing. It includes some helper and adaptation logic to write your
 own fixtures using the fixtures contract.
 
 %prep
-%autosetup -n fixtures-%{version}
+%autosetup -n fixtures-%{version} -p1
 
 %build
 %py3_build
@@ -39,9 +41,12 @@ own fixtures using the fixtures contract.
 %files -n python3-fixtures
 %doc README GOALS NEWS Apache-2.0 BSD COPYING
 %{python3_sitelib}/fixtures
-%{python3_sitelib}/fixtures-%{version}-py?.?.egg-info
+%{python3_sitelib}/fixtures-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Fri Apr 1 2022 caodongxia <caodongxia@huawei.com> - 3.0.0-15
+- Fix test_monkeypatch failed due to python3.10
+
 * Tue Sep 29 2020 liuweibo <liuweibo10@huawei.com> - 3.0.0-14
 - Fix Source0
 
