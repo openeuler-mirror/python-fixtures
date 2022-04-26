@@ -1,6 +1,8 @@
+%bcond_without tests
+
 Name:           python-fixtures
 Version:        3.0.0
-Release:        15
+Release:        16
 Summary:        A python contract for writing reusable state / support logic tests
 License:        ASL 2.0 or BSD
 URL:            https://launchpad.net/python-fixtures
@@ -17,7 +19,11 @@ own fixtures using the fixtures contract.
 %package -n python3-fixtures
 Summary:        A python3 contract for reusable state / support logic
 BuildArch:      noarch
-BuildRequires:  python3-devel python3-pbr >= 0.11 python3-mock python3-testtools >= 0.9.22
+BuildRequires:  python3-devel python3-pbr >= 0.11
+%if %{with tests}
+BuildRequires:  python3-mock
+BuildRequires:  python3-testtools >= 0.9.22
+%endif
 Requires:       python3-testtools >= 0.9.22 python3-six
 %{?python_provide:%python_provide python3-fixtures}
 
@@ -35,8 +41,10 @@ own fixtures using the fixtures contract.
 %install
 %py3_install
 
+%if %{with tests}
 %check
 %{__python3} -m testtools.run fixtures.test_suite
+%endif
 
 %files -n python3-fixtures
 %doc README GOALS NEWS Apache-2.0 BSD COPYING
@@ -44,6 +52,9 @@ own fixtures using the fixtures contract.
 %{python3_sitelib}/fixtures-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Sun Apr 24 2022 lvxiaoqian <xiaoqian@nj.iscas.ac.cn> - 3.0.0-16
+- active build with/without test
+
 * Fri Apr 1 2022 caodongxia <caodongxia@huawei.com> - 3.0.0-15
 - Fix test_monkeypatch failed due to python3.10
 
